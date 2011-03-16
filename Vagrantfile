@@ -17,6 +17,9 @@ Vagrant::Config.run do |config|
     chef.json.merge!({
       :mysql => {
         :server_root_password => "root"
+      },
+      :apache => {
+        :listen_ports => [ "8080", "443" ]
       }
     })
   end

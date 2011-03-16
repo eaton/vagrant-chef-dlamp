@@ -18,7 +18,7 @@ INSTANCE=$(uname -n)
 # Listen on port 6081, administration on localhost:6082, and forward to
 # content server on localhost:8080.  Use a fixed-size cache file.
 #
-DAEMON_OPTS="-a :6081 \
+DAEMON_OPTS="-a :80 \
              -T localhost:6082 \
              -b localhost:8080 \
              -u varnish -g varnish \
