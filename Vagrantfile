@@ -4,19 +4,25 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lucid32"
+  config.vm.box = "base"
 
-  config.vm.provisioner = :chef_solo
-  config.chef.cookbooks_path = "cookbooks"
-  config.chef.add_recipe("vagrant_main")
+  config.vm.customize do |vm|
+    vm.memory_size = 1536
+  end
 
-  config.vm.forward_port("http", 80, 8080)
-  config.vm.forward_port("mysql", 3306, 3306)
+  config.vm.provision :chef_solo do |chef|
+    # This path will be expanded relative to the project directory
+    chef.cookbooks_path = "cookbooks"
+    chef.add_recipe("vagrant_main")
+    chef.json.merge!({
+      :mysql => {
+        :server_root_password => "root"
+      }
+    })
+  end
 
-  config.chef.json.merge!({
-    :mysql => {
-      :server_root_password => "root"
-    }
-  })
-  
+  config.vm.network("33.33.33.10")
+  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
+
 end
+
