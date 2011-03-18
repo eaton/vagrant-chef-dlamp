@@ -2,13 +2,15 @@ require_recipe "apt"
 require_recipe "apache2"
 require_recipe "mysql::server"
 require_recipe "php::php5"
+include_recipe "php::pear"
 require_recipe "varnish"
 require_recipe "memcached"
 require_recipe "imagemagick"
 require_recipe "build-essential"
+require_recipe "hosts"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf php5-xdebug subversion curl git-core  }.each do |a_package|
+%w{ debconf php5-xdebug subversion curl git-core php5-curl php-pear php5-gd  }.each do |a_package|
   package a_package
 end
 
@@ -21,33 +23,23 @@ bash "debconf_for_phpmyadmin" do
 end
 package "phpmyadmin"
 
-s = "dev-site"
-site = {
-  :name => s, 
-  :host => "www.#{s}.com", 
-  :aliases => ["#{s}.com", "dev.#{s}-static.com"]
-}
-
-# Configure the development site
-web_app site[:name] do
-  template "sites.conf.erb"
-  server_name site[:host]
-  server_aliases site[:aliases]
-  docroot "/vagrant/public/"
-end  
-
-# Add site info in /etc/hosts
-bash "info_in_etc_hosts" do
-  code "echo 127.0.0.1 #{site[:host]} #{site[:aliases]} >> /etc/hosts"
+node[:hosts][:localhost_aliases].each do |site|
+  site_name = site.sub("-","_").sub(".","_").sub(".","_")
+  # Configure the development site
+  web_app site do
+    template "sites.conf.erb"
+    server_name site
+    server_aliases [site]
+    docroot "/vagrant/public/#{site}"
+  end
 end
-
 # Retrieve webgrind for xdebug trace analysis
-subversion "Webgrind" do
-  repository "http://webgrind.googlecode.com/svn/trunk/"
-  revision "HEAD"
-  destination "/var/www/webgrind"
-  action :sync
-end
+# subversion "Webgrind" do
+#   repository "http://webgrind.googlecode.com/svn/trunk/"
+#   revision "HEAD"
+#   destination "/var/www/webgrind"
+#   action :sync
+# end
 
 # Add an admin user to mysql
 execute "add-admin-user" do

@@ -1,0 +1,41 @@
+{
+  "groupings": {
+
+  },
+  "recommendations": {
+
+  },
+  "platforms": {
+
+  },
+  "license": "Apache v2.0",
+  "maintainer": "37signals",
+  "suggestions": {
+
+  },
+  "maintainer_email": "sysadmins@37signals.com",
+  "version": "0.1.0",
+  "conflicting": {
+
+  },
+  "description": "Configures hosts",
+  "providing": {
+    "hosts": [
+
+    ]
+  },
+  "name": "hosts",
+  "attributes": {
+
+  },
+  "long_description": "",
+  "recipes": {
+    "hosts": ""
+  },
+  "replacing": {
+
+  },
+  "dependencies": {
+
+  }
+}
