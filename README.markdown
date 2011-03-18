@@ -8,7 +8,7 @@ How
     gem install vagrant
 2. Download and Install [VirtualBox](http://www.virtualbox.org/)
 3. Download a vagrant box (name of the box is supposed to be lucid32)
-    vagrant box add base http://files.vagrantup.com/lucid32.
+    vagrant box add base http://files.vagrantup.com/lucid32.box
 4. Clone this repo
 5. Go to the repo and launch the box
     cd [repo]
