@@ -19,7 +19,10 @@ How
 
 That's it, the file in [repo]/public/ are served here : [http://dev-site.vbox.local/](http://dev-site.vbox.local/)
 
-You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug trace, e.g. [http://dev-site.vbox.local/?XDEBUG_PROFILE](http://dev-site.vbox.local/?XDEBUG_PROFILE)
+To connect to the console of you instance:
+    vagrant ssh
+
+You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug profile, e.g. [http://dev-site.vbox.local/?XDEBUG_PROFILE](http://dev-site.vbox.local/?XDEBUG_PROFILE)
 
 You can then investigate at [http://dev-site.vbox.local/webgrind/](http://dev-site.vbox.local/webgrind/)
 
