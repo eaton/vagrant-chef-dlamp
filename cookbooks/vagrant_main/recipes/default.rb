@@ -29,7 +29,7 @@ node[:hosts][:localhost_aliases].each do |site|
     template "sites.conf.erb"
     server_name site
     server_aliases [site]
-    docroot "/vagrant/public/#{site}"
+    docroot "/vagrant/public/#{site}/www"
   end
 end
 # Retrieve webgrind for xdebug trace analysis
