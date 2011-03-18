@@ -24,7 +24,6 @@ end
 package "phpmyadmin"
 
 node[:hosts][:localhost_aliases].each do |site|
-  site_name = site.sub("-","_").sub(".","_").sub(".","_")
   # Configure the development site
   web_app site do
     template "sites.conf.erb"
@@ -34,12 +33,12 @@ node[:hosts][:localhost_aliases].each do |site|
   end
 end
 # Retrieve webgrind for xdebug trace analysis
-# subversion "Webgrind" do
-#   repository "http://webgrind.googlecode.com/svn/trunk/"
-#   revision "HEAD"
-#   destination "/var/www/webgrind"
-#   action :sync
-# end
+subversion "Webgrind" do
+  repository "http://webgrind.googlecode.com/svn/trunk/"
+  revision "HEAD"
+  destination "/var/www/webgrind"
+  action :sync
+end
 
 # Add an admin user to mysql
 execute "add-admin-user" do
