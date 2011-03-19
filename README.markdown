@@ -14,7 +14,6 @@ How
 5. Clone this repo
 6. Go to the repo and launch the box
     cd [repo]
-    vagrant init
     vagrant up
 7. Add this line to your /etc/hosts (or windows equivalent)
     33.33.33.10 dev-site.vbox.local
