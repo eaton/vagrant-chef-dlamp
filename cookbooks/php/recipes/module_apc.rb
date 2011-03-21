@@ -22,7 +22,7 @@ pack = value_for_platform(
   [ "centos", "redhat", "fedora", "suse" ] => {
     "default" => "php-pecl-apc"
   },
-  "default" => "php5-apc"
+  "default" => "php-apc"
 )
 
 if pack

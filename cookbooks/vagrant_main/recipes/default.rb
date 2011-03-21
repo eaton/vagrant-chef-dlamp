@@ -10,7 +10,7 @@ require_recipe "build-essential"
 require_recipe "hosts"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf php5-xdebug subversion curl git-core php5-curl php-pear php5-gd  }.each do |a_package|
+%w{ debconf php5-xdebug subversion curl git-core php5-curl php-pear php5-gd php-apc }.each do |a_package|
   package a_package
 end
 
