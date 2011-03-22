@@ -1,0 +1,36 @@
+{
+  "recipes": {
+    "xhprof": "Installs xhprof php extension"
+  },
+  "attributes": {
+  },
+  "providing": {
+  },
+  "dependencies": {
+    "php": [
+
+    ]
+  },
+  "maintainer": "Mark Sonnabaum",
+  "replacing": {
+  },
+  "maintainer_email": "mark.sonnabaum@acquia.com",
+  "groupings": {
+  },
+  "platforms": {
+    "ubuntu": [
+
+    ]
+  },
+  "license": "Apache 2.0",
+  "version": "0.9.0",
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "name": "xhprof",
+  "long_description": "",
+  "description": "Installs xhprof php extension from Brian Mercer's launchpad PPA",
+  "conflicting": {
+  }
+}
