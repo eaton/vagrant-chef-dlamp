@@ -18,6 +18,6 @@
 # limitations under the License.
 #
 
-package "php-pear" do
-  action :install
+%w{ php5-dev php-pear }.each do |a_package|
+  package a_package
 end
