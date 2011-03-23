@@ -25,6 +25,8 @@ pack = value_for_platform(
   "default" => "php5-xdebug"
 )
 
+# need to dynamically add config b/c of php 5.3 xdebug incompatibility
+# http://www.eclipse.org/forums/index.php?t=msg&goto=538019&
 template value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => "/etc/xdebug.ini"}, "default" => "/etc/php5/apache2/conf.d/xdebug.ini") do
   source "xdebug.ini.erb"
   owner "root"
@@ -33,6 +35,12 @@ template value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"defaul
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
-package pack do
-  action :upgrade
+packages = value_for_platform(
+  "default" => %w{php5-xdebug}
+)
+
+packages.each do |pkg|
+  package pkg do
+    action :upgrade
+  end
 end
