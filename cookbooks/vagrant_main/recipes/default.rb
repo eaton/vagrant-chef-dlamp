@@ -13,6 +13,7 @@ require_recipe "build-essential"
 require_recipe "hosts"
 require_recipe "drush"
 require_recipe "xhprof"
+require_recipe "phpmyadmin"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
 %w{ debconf php5-xdebug subversion curl git-core }.each do |a_package|
