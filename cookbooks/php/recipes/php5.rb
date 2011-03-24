@@ -26,8 +26,9 @@ include_recipe "php::module_gd"
 include_recipe "php::module_pgsql"
 include_recipe "php::pear"
 
-cookbook_file value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => "/etc/php.ini"}, "default" => "/etc/php5/apache2/php.ini") do
-  source "apache2-php5.ini"
+
+template value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => "/etc/php.ini"}, "default" => "/etc/php5/apache2/php.ini") do
+  source "php.ini.erb"
   owner "root"
   group "root"
   mode 0644
@@ -36,9 +37,9 @@ end
 
 packages = value_for_platform(
   [ "centos", "redhat", "fedora", "suse" ] => {
-    "default" => %w(php php-cli php-Smarty)
+    "default" => %w(php php-Smarty)
   },
-  "default" => %w{php5 php5-cli smarty}
+  "default" => %w{php5 smarty}
 )
 
 packages.each do |pkg|

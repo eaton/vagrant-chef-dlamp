@@ -1,0 +1,6 @@
+default[:xdebug][:default_enable]   =  "1"
+default[:xdebug][:remote_enable]    =  "1"
+default[:xdebug][:remote_handler]   =  "dbgp"
+default[:xdebug][:remote_host]      =  "localhost"
+default[:xdebug][:remote_port]      =  "9000"
+default[:xdebug][:remote_autostart] =  "0"

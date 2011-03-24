@@ -2,10 +2,12 @@ require_recipe "apt"
 require_recipe "apache2"
 require_recipe "mysql::server"
 require_recipe "php::php5"
+require_recipe "php::php5-cli"
 include_recipe "php::pear"
 require_recipe "php::module_apc"
 require_recipe "php::module_gd"
 require_recipe "php::module_curl"
+require_recipe "php::module_xdebug"
 require_recipe "varnish"
 require_recipe "memcached"
 require_recipe "imagemagick"
@@ -16,7 +18,7 @@ require_recipe "xhprof"
 require_recipe "phpmyadmin"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf php5-xdebug subversion curl git-core }.each do |a_package|
+%w{ debconf subversion curl git-core }.each do |a_package|
   package a_package
 end
 
