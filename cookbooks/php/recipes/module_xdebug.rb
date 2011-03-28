@@ -1,7 +1,7 @@
 #
-# Author::  Dustin Currie (<dustin@onlinedesert.com.com>)
+# Author::  Dustin Currie (<dustin@onlinedesert.com>)
 # Cookbook Name:: php
-# Recipe:: module_gd
+# Recipe:: module_xdebug
 #
 # Copyright 2010, Dustin Currie
 #
@@ -35,12 +35,7 @@ template value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"defaul
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
-packages = value_for_platform(
-  "default" => %w{php5-xdebug}
-)
-
-packages.each do |pkg|
-  package pkg do
-    action :upgrade
-  end
+package pack do
+  action :upgrade
 end
+
