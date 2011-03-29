@@ -22,7 +22,7 @@ Vagrant::Config.run do |config|
       :php5 => {
         :resource_limits => {
           :max_execution_time => "80",
-          :memory_limit => "384",
+          :memory_limit => "384M",
         }
       },
       :mysql => {
