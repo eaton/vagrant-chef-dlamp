@@ -19,6 +19,12 @@ Vagrant::Config.run do |config|
 
     # this could be submoduled into (this is really just getting merged into) node.json
     chef.json.merge!({
+      :php5 => {
+        :resource_limits => {
+          :max_execution_time => "80",
+          :memory_limit => "384",
+        }
+      },
       :mysql => {
         :server_root_password => "root",
         :bind_address => "127.0.0.1"
