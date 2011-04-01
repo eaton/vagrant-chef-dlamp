@@ -30,7 +30,24 @@ Vagrant::Config.run do |config|
         :bind_address => "127.0.0.1"
       },
       :apache => {
-        :listen_ports => [ "8080", "443" ]
+        :listen_ports => [ "8080", "443" ],
+        :keepaliverequests => 10,
+        :prefork => {
+          :startservers => 2,
+          :minspareservers => 1,
+          :maxspareservers => 3,
+          :serverlimit => 40,
+          :maxclients => 40,
+          :maxrequestsperchild => 1000
+        },
+        :worker => {
+          :startservers => 2,
+          :maxclients => 128,
+          :minsparethreads => 16,
+          :maxsparethreads => 128,
+          :threadsperchild => 16,
+          :maxrequestsperchild => 0
+        }
       },
       :hosts => {
         :localhost_aliases => ["dev-site.vbox.local", "dev-site2.vbox.local"]

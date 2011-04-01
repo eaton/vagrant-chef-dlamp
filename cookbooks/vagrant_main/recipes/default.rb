@@ -40,6 +40,13 @@ node[:hosts][:localhost_aliases].each do |site|
     docroot "/vagrant/public/#{site}/www"
   end
 end
+
+# Add apc conf until we can correctly config apc
+bash "apc_shm_size_conf" do
+  code "echo apc.shm_size = 70 >> /etc/php5/apache2/conf.d/apc.ini"
+  only_if { "grep shm_size /etc/php5/apache2/conf.d/apc.ini" }
+end
+
 # Retrieve webgrind for xdebug trace analysis
 subversion "Webgrind" do
   repository "http://webgrind.googlecode.com/svn/trunk/"
