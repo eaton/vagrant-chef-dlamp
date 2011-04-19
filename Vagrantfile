@@ -5,6 +5,7 @@ Vagrant::Config.run do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "base"
+  # config.vm.boot_mode = :gui
 
   config.vm.customize do |vm|
     vm.memory_size = 1536
@@ -27,7 +28,11 @@ Vagrant::Config.run do |config|
       },
       :mysql => {
         :server_root_password => "root",
-        :bind_address => "127.0.0.1"
+        :bind_address => "127.0.0.1",
+        :tunable => {
+          :key_buffer => "384M",
+          :table_cache => "4096",
+        }
       },
       :apache => {
         :listen_ports => [ "8080", "443" ],
