@@ -18,12 +18,10 @@
 # limitations under the License.
 #
 
-pack = value_for_platform(
-  [ "centos", "redhat", "fedora", "suse" ] => {
-    "default" => "php-xdebug"
-  },
-  "default" => "php5-xdebug"
-)
+# Use pecl to install xdebug.
+php_pear "xdebug" do
+  action :upgrade
+end
 
 # need to dynamically add config b/c of php 5.3 xdebug incompatibility
 # http://www.eclipse.org/forums/index.php?t=msg&goto=538019&
@@ -34,8 +32,3 @@ template value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"defaul
   mode 0644
   notifies :restart, resources("service[apache2]"), :delayed
 end
-
-package pack do
-  action :upgrade
-end
-
