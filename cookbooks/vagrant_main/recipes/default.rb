@@ -18,7 +18,7 @@ require_recipe "xhprof"
 require_recipe "phpmyadmin"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf subversion curl git-core }.each do |a_package|
+%w{ nfs-common debconf subversion curl git-core }.each do |a_package|
   package a_package
 end
 
