@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
     chef.add_recipe("vagrant_main")
 
     # this could be submoduled into (this is really just getting merged into) node.json
