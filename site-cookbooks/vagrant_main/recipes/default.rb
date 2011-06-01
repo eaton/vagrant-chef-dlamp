@@ -1,13 +1,14 @@
 require_recipe "apt"
-require_recipe "apache2"
 require_recipe "mysql::server"
-require_recipe "php::php5"
-require_recipe "php::php5-cli"
-include_recipe "php::pear"
-require_recipe "php::module_apc"
+require_recipe "php"
 require_recipe "php::module_curl"
 require_recipe "php::module_gd"
-require_recipe "php::module_xdebug"
+require_recipe "php::module_mysql"
+require_recipe "php::module_memcache"
+require_recipe "apache2"
+require_recipe "apache2::mod_php5"
+require_recipe "apache2::mod_rewrite"
+require_recipe "apache2::mod_expires"
 require_recipe "varnish"
 require_recipe "memcached"
 require_recipe "imagemagick"
@@ -41,10 +42,29 @@ node[:hosts][:localhost_aliases].each do |site|
   end
 end
 
-# Add apc conf until we can correctly config apc
-bash "apc_shm_size_conf" do
-  code "echo apc.shm_size = 70 >> /etc/php5/apache2/conf.d/apc.ini"
-  only_if { "grep shm_size /etc/php5/apache2/conf.d/apc.ini" }
+template "#{node[:varnish][:default]}" do
+  source "varnish-template-ubuntu-default.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+php_pear "pdo" do
+  action :install
+end
+
+# Requried to install APC.
+package "libpcre3-dev"
+
+# Install APC.
+php_pear "apc" do
+  directives(:shm_size => 70)
+  version "3.1.6" #ARGH!!! debuging enabled on APC builds circa 5/2011. Pin back.
+  action :install
+end
+
+php_pear "xdebug" do
+  action :install
 end
 
 # Retrieve webgrind for xdebug trace analysis
