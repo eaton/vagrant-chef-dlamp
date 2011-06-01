@@ -64,6 +64,14 @@ php_pear "apc" do
 end
 
 php_pear "xdebug" do
+  directives(
+    :default_enable => 1,
+    :remote_enable => 1,
+    :remote_handler => "dbgp",
+    :remote_host => "localhost",
+    :remote_port => 9000,
+    :remote_autostart => 0
+  )
   action :install
 end
 

@@ -11,7 +11,9 @@ Vagrant::Config.run do |config|
     vm.memory_size = 1536
   end
   config.vm.network("33.33.33.10")
-  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
+  config.vm.share_folder("v-root", "/vagrant", ".")
+  # config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
+  # config.vm.share_folder("v-apt", "/var/cache/apt", "~/temp/vagrant_aptcache/apt", :nfs => true)
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
