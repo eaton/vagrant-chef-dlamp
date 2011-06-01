@@ -64,15 +64,15 @@ php_pear "apc" do
 end
 
 php_pear "xdebug" do
-  directives(
-    :default_enable => 1,
-    :remote_enable => 1,
-    :remote_handler => "dbgp",
-    :remote_host => "localhost",
-    :remote_port => 9000,
-    :remote_autostart => 0
-  )
   action :install
+end
+
+template "/etc/php5/apache2/conf.d/xdebug.ini" do
+  source "xdebug.ini.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :restart, resources("service[apache2]"), :delayed
 end
 
 # Retrieve webgrind for xdebug trace analysis
