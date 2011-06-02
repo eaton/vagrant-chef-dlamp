@@ -1,3 +1,0 @@
-[submodule "cookbooks"]
-	path = cookbooks
-	url = https://github.com/AllPlayers/cookbooks.git
