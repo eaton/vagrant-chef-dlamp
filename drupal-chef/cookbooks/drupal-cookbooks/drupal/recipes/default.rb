@@ -75,6 +75,14 @@ template "/etc/php5/apache2/conf.d/xdebug.ini" do
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
+template "/etc/php5/apache2/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :restart, resources("service[apache2]"), :delayed
+end
+
 # Retrieve webgrind for xdebug trace analysis
 subversion "Webgrind" do
   repository "http://webgrind.googlecode.com/svn/trunk/"
