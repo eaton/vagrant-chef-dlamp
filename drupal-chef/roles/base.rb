@@ -4,10 +4,10 @@ run_list(
   "recipe[drupal]"
 )
 override_attributes(
-  :php => {
+  :php5 => {
     :resource_limits => {
-      :max_execution_time => "80",
-      :memory_limit => "384M",
+      :max_execution_time => "60",
+      :memory_limit => "256M",
     }
   },
   :mysql => {
