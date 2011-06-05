@@ -14,9 +14,10 @@ require_recipe "memcached"
 require_recipe "imagemagick"
 require_recipe "build-essential"
 require_recipe "hosts"
-require_recipe "drush"
 require_recipe "xhprof"
 require_recipe "phpmyadmin"
+require_recipe "drush"
+require_recipe "drush_make"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
 %w{ nfs-common debconf subversion curl git-core }.each do |a_package|
@@ -102,3 +103,43 @@ execute "add-admin-user" do
   action :run
   ignore_failure true
 end
+
+# TODO: Break this out into a vagrant only cookbook? (name: "drupal-vagrant")
+# create a drupal db
+execute "add-drupal-db" do
+  command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} -e \"" +
+      "CREATE DATABASE drupal;\""
+  action :run
+  ignore_failure true
+end
+
+# drush make a default drupal site example
+bash "install-default-drupal-makefile" do
+  code <<-EOH
+(mkdir -p /vagrant/public/drupal.vbox.local)
+  EOH
+  not_if { File.exists?("/vagrant/public/drupal.vbox.local/example.make") }
+end
+
+cookbook_file "/vagrant/public/drupal.vbox.local/example.make" do
+  source "example.make"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+# drush make a default drupal site example
+bash "install-default-drupal-site" do
+  code <<-EOH
+(cd /vagrant/public/drupal.vbox.local; drush make example.make www)
+  EOH
+  not_if { File.exists?("/vagrant/public/drupal.vbox.local/www/index.php") }
+end
+
+cookbook_file "/vagrant/public/drupal.vbox.local/www/sites/default/settings.php" do
+  source "settings.php"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
