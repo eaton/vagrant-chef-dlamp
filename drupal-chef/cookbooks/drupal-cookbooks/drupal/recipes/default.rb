@@ -123,9 +123,6 @@ end
 
 cookbook_file "/vagrant/public/drupal.vbox.local/example.make" do
   source "example.make"
-  owner "root"
-  group "root"
-  mode 0644
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
@@ -139,9 +136,6 @@ end
 
 cookbook_file "/vagrant/public/drupal.vbox.local/www/sites/default/settings.php" do
   source "settings.php"
-  owner "root"
-  group "root"
-  mode 0644
   notifies :restart, resources("service[varnish]"), :delayed
 end
 

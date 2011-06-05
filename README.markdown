@@ -1,21 +1,17 @@
 # What
-VirtualBox Vagrant Chef Drupal install on a LAMP server
+VirtualBox Vagrant Chef Drupal install
 
 
 # How
-1. Download and Install [VirtualBox](http://www.virtualbox.org/)
-2. Make sure you update your gems:
-    `(sudo) gem update --system`
-3. Install [vagrant](http://vagrantup.com/):
-    `(sudo) gem install vagrant`
-4. Download a vagrant box:
+1. Download and Install [VirtualBox](http://www.virtualbox.org/) (ensure you are on the latest version 4.0.8+)
+2. Install [vagrant](http://vagrantup.com/docs/getting-started/index.html)
+3. Download a vagrant box:
     `vagrant box add base http://files.vagrantup.com/lucid32.box`
-5. Download or Clone this project
-6. Go to this folder and launch the box:
+4. Download or Clone this project go to the folder and launch the box:
     `cd [vagrant project directory];
     vagrant up`
-7. Add this line to your /etc/hosts (or windows equivalent):
-    `33.33.33.10  drupal.vbox.local dev-site.vbox.local`
+5. Add this line to your /etc/hosts (or windows equivalent):
+    `33.33.33.10        drupal.vbox.local dev-site.vbox.local`
 
 
 That's it, files in "public" are served here : [http://drupal.vbox.local/](http://drupal.vbox.local/)
