@@ -126,6 +126,7 @@ cookbook_file "/vagrant/public/drupal.vbox.local/example.make" do
   owner "root"
   group "root"
   mode 0644
+  notifies :restart, resources("service[apache2]"), :delayed
 end
 
 # drush make a default drupal site example
@@ -141,5 +142,6 @@ cookbook_file "/vagrant/public/drupal.vbox.local/www/sites/default/settings.php"
   owner "root"
   group "root"
   mode 0644
+  notifies :restart, resources("service[varnish]"), :delayed
 end
 
