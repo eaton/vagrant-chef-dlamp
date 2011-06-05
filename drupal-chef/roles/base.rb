@@ -39,7 +39,7 @@ override_attributes(
     }
   },
   :hosts => {
-    :localhost_aliases => ["dev-site.vbox.local", "dev-site2.vbox.local"]
+    :localhost_aliases => ["drupal.vbox.local", "dev-site.vbox.local"]
     # :entries => {
     #   # "pub.lic.ip" => "name"
     # }

@@ -1,0 +1,39 @@
+{
+  "recipes": {
+    "drush_make": "Installs drush make"
+  },
+  "attributes": {
+  },
+  "providing": {
+  },
+  "dependencies": {
+  },
+  "maintainer": "Chris Christensen",
+  "replacing": {
+  },
+  "maintainer_email": "chris@allplayers.com",
+  "groupings": {
+  },
+  "platforms": {
+    "debian": [
+
+    ],
+    "arch": [
+
+    ],
+    "ubuntu": [
+
+    ]
+  },
+  "license": "Apache 2.0",
+  "version": "0.9.0",
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "name": "drush_make",
+  "long_description": "",
+  "description": "Installs drush make",
+  "conflicting": {
+  }
+}
