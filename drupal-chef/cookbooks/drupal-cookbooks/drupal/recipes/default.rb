@@ -59,7 +59,7 @@ package "libpcre3-dev"
 
 # Install APC.
 php_pear "apc" do
-  directives(:shm_size => 70)
+  directives(:shm_size => "70M")
   version "3.1.6" #ARGH!!! debuging enabled on APC builds circa 5/2011. Pin back.
   action :install
 end
@@ -141,5 +141,10 @@ end
 cookbook_file "/vagrant/public/drupal.vbox.local/www/sites/default/settings.php" do
   source "settings.php"
   notifies :restart, resources("service[varnish]"), :delayed
+end
+
+# TODO: HACK: Cleanup warning output from misconfig file
+cookbook_file "/etc/php5/cli/conf.d/mcrypt.ini" do
+  source "mcrypt.ini"
 end
 
