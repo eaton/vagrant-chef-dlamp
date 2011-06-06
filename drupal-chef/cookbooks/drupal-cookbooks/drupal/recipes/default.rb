@@ -68,6 +68,10 @@ php_pear "xdebug" do
   action :install
 end
 
+php_pear "uploadprogress" do
+  action :install
+end
+
 template "/etc/php5/apache2/conf.d/xdebug.ini" do
   source "xdebug.ini.erb"
   owner "root"
