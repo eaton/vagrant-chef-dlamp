@@ -99,13 +99,10 @@ end
 # Add an admin user to mysql
 execute "add-admin-user" do
   command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} -e \"" +
-      "CREATE USER 'myadmin'@'localhost' IDENTIFIED BY 'myadmin';" +
-      "GRANT ALL PRIVILEGES ON *.* TO 'myadmin'@'localhost' WITH GRANT OPTION;" +
-      "CREATE USER 'myadmin'@'%' IDENTIFIED BY 'myadmin';" +
-      "GRANT ALL PRIVILEGES ON *.* TO 'myadmin'@'%' WITH GRANT OPTION;\" " +
+      "GRANT ALL PRIVILEGES ON *.* TO 'myadmin'@'localhost' IDENTIFIED BY 'myadmin' WITH GRANT OPTION;" +
+      "GRANT ALL PRIVILEGES ON *.* TO 'myadmin'@'%' IDENTIFIED BY 'myadmin' WITH GRANT OPTION;\" " +
       "mysql"
   action :run
-  ignore_failure true
 end
 
 # TODO: Break this out into a vagrant only cookbook? (name: "drupal-vagrant")
