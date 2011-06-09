@@ -20,7 +20,7 @@ require_recipe "drush"
 require_recipe "drush_make"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ nfs-common debconf subversion curl git-core }.each do |a_package|
+%w{ nfs-common debconf subversion curl git-core php5-mcrypt}.each do |a_package|
   package a_package
 end
 
@@ -139,9 +139,3 @@ cookbook_file "/vagrant/public/drupal.vbox.local/www/sites/default/settings.php"
   source "settings.php"
   notifies :restart, resources("service[varnish]"), :delayed
 end
-
-# TODO: HACK: Cleanup warning output from misconfig file
-cookbook_file "/etc/php5/cli/conf.d/mcrypt.ini" do
-  source "mcrypt.ini"
-end
-
