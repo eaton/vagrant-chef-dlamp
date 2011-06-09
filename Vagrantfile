@@ -17,8 +17,8 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
-    chef.cookbooks_path = ["drupal-chef/cookbooks/site-cookbooks", "drupal-chef/cookbooks/drupal-cookbooks"]
-    chef.roles_path = "drupal-chef/roles"
+    chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
+    chef.roles_path = "roles"
 
     # This role represents our default Drupal development stack.
     chef.add_role("drupal_lamp_varnish_dev")
