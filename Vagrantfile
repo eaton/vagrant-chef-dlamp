@@ -19,6 +19,20 @@ Vagrant::Config.run do |config|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["drupal-chef/cookbooks/site-cookbooks", "drupal-chef/cookbooks/drupal-cookbooks"]
     chef.roles_path = "drupal-chef/roles"
-    chef.add_role("base")
+
+    # This role represents our default Drupal development stack.
+    chef.add_role("drupal_lamp_varnish_dev")
+    # Install an example D7 install at drupal.vbox.local.
+    chef.add_recipe('drupal::example')
+    # This is basically the Vagrant role.
+    chef.json.merge!({
+        :www_root => '/vagrant/public',
+        :mysql => {
+          :server_root_password => "root" # TODO Hardcoded MySQL root password.
+        },
+        :hosts => {
+          :localhost_aliases => ["drupal.vbox.local", "dev-site.vbox.local"]
+        }
+      })
   end
 end
