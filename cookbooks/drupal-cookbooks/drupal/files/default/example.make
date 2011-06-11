@@ -37,7 +37,8 @@ projects[ctools][subdir] = contrib
 projects[devel][subdir] = contrib
 projects[views_bulk_operations][subdir] = contrib
 projects[views][subdir] = contrib
-
+projects[features][subdir] = contrib
+projects[diff][subdir] = contrib
   
 
 ; Themes
