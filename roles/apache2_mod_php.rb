@@ -29,9 +29,7 @@ default_attributes(
     }
   },
   :php5 => {
-    :resource_limits => {
-      :max_execution_time => "60",
-      :memory_limit => "256M",
-    }
+    :max_execution_time => "60",
+    :memory_limit => "256M"
   }
 )
