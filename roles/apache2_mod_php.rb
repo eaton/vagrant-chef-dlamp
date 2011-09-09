@@ -15,8 +15,8 @@ default_attributes(
       :startservers => 2,
       :minspareservers => 1,
       :maxspareservers => 3,
-      :serverlimit => 40,
-      :maxclients => 40,
+      :serverlimit => 4,
+      :maxclients => 4,
       :maxrequestsperchild => 1000
     },
     :worker => {
@@ -29,9 +29,7 @@ default_attributes(
     }
   },
   :php5 => {
-    :resource_limits => {
-      :max_execution_time => "60",
-      :memory_limit => "256M",
-    }
+    :max_execution_time => "60",
+    :memory_limit => "256M"
   }
 )
