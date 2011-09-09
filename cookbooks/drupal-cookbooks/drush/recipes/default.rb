@@ -19,8 +19,8 @@ case node[:platform]
 when "debian", "ubuntu"
   bash "install-drush" do
     code <<-EOH
-(cd /tmp; wget http://ftp.drupal.org/files/projects/drush-All-Versions-HEAD.tar.gz)
-(cd /tmp; tar zxvf drush-All-Versions-HEAD.tar.gz)
+(cd /tmp; wget http://ftp.drupal.org/files/projects/drush-7.x-4.5.tar.gz)
+(cd /tmp; tar zxvf drush-7.x-4.5.tar.gz)
 (cd /tmp; mv drush /usr/share/)
 (ln -s /usr/share/drush/drush /usr/bin/drush)
 (pear install Console_Table)
