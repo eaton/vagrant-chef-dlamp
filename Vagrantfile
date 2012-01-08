@@ -7,10 +7,20 @@ Vagrant::Config.run do |config|
   config.vm.box = "base"
   # config.vm.boot_mode = :gui
 
+  # Memory setting for Vagrant < 0.90
   config.vm.customize do |vm|
     vm.memory_size = 1024
   end
+
+  # Memory setting for Vagrant >= 0.90
+  # config.vm.customize ["modifyvm", :id, "--memory", "1024"]
+
+  # Network setting for Vagrant < 0.90
   config.vm.network("33.33.33.10")
+
+  # Network setting for Vagrant >= 0.90
+  # config.vm.network :hostonly, "33.33.33.10"
+
   config.vm.share_folder("v-root", "/vagrant", ".")
   # config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
   # config.vm.share_folder("v-apt", "/var/cache/apt", "~/temp/vagrant_aptcache/apt", :nfs => true)
