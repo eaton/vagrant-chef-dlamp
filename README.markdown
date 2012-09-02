@@ -4,7 +4,7 @@ VirtualBox Vagrant Chef Drupal install
 
 # How
 1. Download and Install [VirtualBox](http://www.virtualbox.org/) (ensure you are on the latest version 4.0.8+)
-2. Install [vagrant](http://vagrantup.com/docs/getting-started/index.html)
+2. Install [vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
 3. Download a vagrant box:
     `vagrant box add base http://files.vagrantup.com/lucid32.box`
 4. Download or Clone this project go to the folder and launch the box:
@@ -27,3 +27,10 @@ You can then investigate at [http://dev-site.vbox.local/webgrind/](http://dev-si
 
 Phpmyadmin is available [http://dev-site.vbox.local/phpmyadmin/](http://dev-site.vbox.local/phpmyadmin/). User `myadmin`, Password `myadmin`
 
+## Other projects of interest
+
+*  [http://drupal.org/sandbox/mbutcher/1356522](http://drupal.org/sandbox/mbutcher/1356522)
+*  [http://drupal.org/project/drush-vagrant](http://drupal.org/project/drush-vagrant)
+
+
+(Development sponsored by: [AllPlayers.com](https://www.allplayers.com))
