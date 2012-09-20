@@ -4,7 +4,7 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "base"
+  config.vm.box = "lucid32"
   # config.vm.boot_mode = :gui
 
   # Memory setting for Vagrant < 0.90
@@ -20,6 +20,8 @@ Vagrant::Config.run do |config|
 
   # Network setting for Vagrant >= 0.90
   config.vm.network :hostonly, "33.33.33.10"
+  config.vm.forward_port(80, 80)
+  config.vm.forward_port(3306, 3306)
 
   config.vm.share_folder("v-root", "/vagrant", ".")
   # config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
@@ -31,18 +33,22 @@ Vagrant::Config.run do |config|
     chef.roles_path = "roles"
 
     # This role represents our default Drupal development stack.
-    chef.add_role("drupal_lamp_varnish_dev")
-    # Install an example D7 install at drupal.vbox.local.
-    chef.add_recipe('drupal::example')
-    # This is basically the Vagrant role.
+    chef.add_role("drupal_lamp_dev")
+
     chef.json.merge!({
         :www_root => '/vagrant/public',
         :mysql => {
-          :server_root_password => "root" # TODO Hardcoded MySQL root password.
+          :server_root_password => "root", # TODO Hardcoded MySQL root password.
+          :allow_remote_root => true,
+          :bind_address => "0.0.0.0"
         },
         :hosts => {
-          :localhost_aliases => ["drupal.vbox.local", "dev-site.vbox.local"]
-        }
+          :localhost_aliases => ["module-monday.vm"]
+        },
+			  :drush => {
+				  :install_method => 'pear',
+				  :version => '5.7.0',
+			  }
       })
   end
 end
