@@ -43,7 +43,7 @@ Vagrant::Config.run do |config|
           :bind_address => "0.0.0.0"
         },
         :hosts => {
-          :localhost_aliases => ["module-monday.vm"]
+          :localhost_aliases => ["dev-site.vm"]
         },
 			  :drush => {
 				  :install_method => 'pear',
