@@ -12,12 +12,15 @@ VirtualBox Vagrant Chef Drupal install
     vagrant up`
 5. Add this line to your /etc/hosts (or windows equivalent):
     `33.33.33.10        dev-site.vm`
+6. Alternately, use homebrew on your macbook air to install dnsmasq, and add the following line to your dnsmasq.conf file:
+    `address=/.vm/33.33.33.10`
+7. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.Upd
 
 
 That's it, files in "public" are served here : [http://dev-site.vm/](http://drupal.vbox.local/), and if you a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
 
 To connect to the console of you instance:
-    `vagrant ssh`
+    `vagrant ssh` 
 
 # Why
 This project is based on the [Vagrant Project](http://drupal.org/project/vagrant) on Drupal.org, but includes a number of tweaks.
