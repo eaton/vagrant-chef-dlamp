@@ -23,9 +23,10 @@ Vagrant::Config.run do |config|
   config.vm.forward_port(80, 80)
   config.vm.forward_port(3306, 3306)
 
+  # TODO: Turn on :nfs => TRUE? Might help Drupal performance.
   config.vm.share_folder("v-root", "/vagrant", ".")
-  # config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
-  # config.vm.share_folder("v-apt", "/var/cache/apt", "~/temp/vagrant_aptcache/apt", :nfs => true)
+  config.vm.share_folder("public", "/vagrant/public", "./public", :create => TRUE, :owner => "www-data", :group => "www-data")
+  config.vm.share_folder("private", "/vagrant/private", "./private", :create => TRUE, :owner => "www-data", :group => "www-data")
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
