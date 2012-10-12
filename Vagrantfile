@@ -23,10 +23,9 @@ Vagrant::Config.run do |config|
   config.vm.forward_port(80, 80)
   config.vm.forward_port(3306, 3306)
 
-  # TODO: Turn on :nfs => TRUE? Might help Drupal performance.
+  # On windows machines, NFS isn't supported. Will include some commented-out non-NFS
+  # lines later.
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => TRUE)
-  config.vm.share_folder("public", "/vagrant/public", "./public", :create => TRUE, :nfs => TRUE)
-  config.vm.share_folder("private", "/vagrant/private", "./private", :create => TRUE, :nfs => TRUE)
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
