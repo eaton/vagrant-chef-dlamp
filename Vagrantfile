@@ -22,17 +22,19 @@ Vagrant::Config.run do |config|
   config.vm.network :hostonly, "33.33.33.10"
   config.vm.forward_port(80, 80)
   config.vm.forward_port(3306, 3306)
-
+  
+  config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  
   # TODO: Turn on :nfs => TRUE? Might help Drupal performance.
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => TRUE)
-  config.vm.share_folder("public", "/vagrant/public", "./public", :create => TRUE, :nfs => TRUE)
-  config.vm.share_folder("private", "/vagrant/private", "./private", :create => TRUE, :nfs => TRUE)
+  # config.vm.share_folder("public", "/vagrant/public", "./public", :create => TRUE, :nfs => TRUE)
+  # config.vm.share_folder("private", "/vagrant/private", "./private", :create => TRUE, :nfs => TRUE)
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
     chef.roles_path = "roles"
-
+	
     # This role represents our default Drupal development stack.
     chef.add_role("drupal_lamp_dev")
 
