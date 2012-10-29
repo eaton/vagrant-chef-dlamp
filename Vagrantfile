@@ -27,6 +27,8 @@ Vagrant::Config.run do |config|
   # lines later.
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => TRUE)
 
+  config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
