@@ -4,7 +4,8 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lucid32"
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   # config.vm.boot_mode = :gui
 
   # Memory setting for Vagrant < 0.90
