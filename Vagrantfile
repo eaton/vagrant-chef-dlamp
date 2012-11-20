@@ -1,3 +1,10 @@
+# Returns true if we are running on a MS windows platform, false otherwise.
+def Kernel.is_windows?
+  processor, platform, *rest = RUBY_PLATFORM.split("-")
+  platform == 'mswin32'
+end
+
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. For a detailed explanation
   # and listing of configuration options, please view the documentation
@@ -24,9 +31,9 @@ Vagrant::Config.run do |config|
   config.vm.forward_port(80, 80)
   config.vm.forward_port(3306, 3306)
 
-  # On windows machines, NFS isn't supported. Will include some commented-out non-NFS
-  # lines later.
-  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => TRUE)
+  # Try to use NFS only on platforms other than Windows
+  nfs = !Kernel.is_windows?
+  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => nfs)
 
   config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 
@@ -50,7 +57,7 @@ Vagrant::Config.run do |config|
         },
 			  :drush => {
 				  :install_method => 'pear',
-				  :version => '5.7.0',
+				  :version => '5.8.0',
 			  }
       })
   end
