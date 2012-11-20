@@ -6,7 +6,7 @@ VirtualBox Vagrant Chef Drupal install
 1. Download and Install [VirtualBox](http://www.virtualbox.org/) (ensure you are on the latest version 4.0.8+)
 2. Install [vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
 3. Download a vagrant box:
-    `vagrant box add lucid32 http://files.vagrantup.com/lucid32.box`
+    `vagrant box add precise32 http://files.vagrantup.com/precise32.box`
 4. Download or Clone this project go to the folder and launch the box:
     `cd [vagrant project directory];
     vagrant up`

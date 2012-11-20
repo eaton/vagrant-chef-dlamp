@@ -1,10 +1,3 @@
-# Returns true if we are running on a MS windows platform, false otherwise.
-def Kernel.is_windows?
-  processor, platform, *rest = RUBY_PLATFORM.split("-")
-  platform == 'mswin32'
-end
-
-
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. For a detailed explanation
   # and listing of configuration options, please view the documentation
@@ -61,4 +54,10 @@ Vagrant::Config.run do |config|
 			  }
       })
   end
+end
+
+# Returns true if we are running on a MS windows platform, false otherwise.
+def Kernel.is_windows?
+  processor, platform, *rest = RUBY_PLATFORM.split("-")
+  platform == 'mswin32' || platform == 'mswin64'
 end
