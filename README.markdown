@@ -5,16 +5,14 @@ VirtualBox Vagrant Chef Drupal install
 # How
 1. Download and Install [VirtualBox](http://www.virtualbox.org/) (ensure you are on the latest version 4.0.8+)
 2. Install [vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
-3. Download a vagrant box:
-    `vagrant box add precise32 http://files.vagrantup.com/precise32.box`
-4. Download or Clone this project go to the folder and launch the box:
+3. Download or Clone this project go to the folder and launch the box:
     `cd [vagrant project directory];
     vagrant up`
-5. Add this line to your /etc/hosts (or windows equivalent):
+4. Add this line to your /etc/hosts (or windows equivalent):
     `33.33.33.10        dev-site.vm`
-6. Alternately, use homebrew on your macbook air to install dnsmasq, and add the following line to your dnsmasq.conf file:
+5. Alternately, use homebrew on your macbook air to install dnsmasq, and add the following line to your dnsmasq.conf file:
     `address=/.vm/33.33.33.10`
-7. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
+6. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
 
 
 That's it, files in "public" are served here : [http://dev-site.vm/](http://drupal.vbox.local/), and if you a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
