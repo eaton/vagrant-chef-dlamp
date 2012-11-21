@@ -59,5 +59,5 @@ end
 # Returns true if we are running on a MS windows platform, false otherwise.
 def Kernel.is_windows?
   processor, platform, *rest = RUBY_PLATFORM.split("-")
-  platform == 'mswin32' || platform == 'mswin64'
+  platform == 'mswin32' || platform == 'mswin64' || platform == 'mingw32' || platform == 'mingw32'
 end
