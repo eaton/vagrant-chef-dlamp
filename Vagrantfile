@@ -48,10 +48,10 @@ Vagrant::Config.run do |config|
         :hosts => {
           :localhost_aliases => ["dev-site.vm"]
         },
-			  :drush => {
-				  :install_method => 'pear',
-				  :version => '5.8.0',
-			  }
+        :drush => {
+          :install_method => 'pear',
+          :version => '5.8.0',
+        }
       })
   end
 end
