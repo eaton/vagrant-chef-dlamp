@@ -17,10 +17,10 @@ Vagrant::Config.run do |config|
   config.vm.customize ["modifyvm", :id, "--memory", "1024"]
 
   # Network setting for Vagrant < 0.90
-  # config.vm.network("33.33.33.10")
+  # config.vm.network("10.0.0.10")
 
   # Network setting for Vagrant >= 0.90
-  config.vm.network :hostonly, "33.33.33.10"
+  config.vm.network :hostonly, "10.0.0.10"
   config.vm.forward_port(80, 80)
   config.vm.forward_port(3306, 3306)
 
