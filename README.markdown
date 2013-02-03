@@ -9,9 +9,9 @@ VirtualBox Vagrant Chef Drupal install
     `cd [vagrant project directory];
     vagrant up`
 4. Add this line to your /etc/hosts (or windows equivalent):
-    `33.33.33.10        dev-site.vm`
+    `10.0.0..10        dev-site.vm`
 5. Alternately, use homebrew on your macbook air to install dnsmasq, and add the following line to your dnsmasq.conf file:
-    `address=/.vm/33.33.33.10`
+    `address=/.vm/10.0.0.10`
 6. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
 
 
