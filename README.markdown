@@ -9,17 +9,36 @@ VirtualBox Vagrant Chef Drupal install
     `cd [vagrant project directory];
     vagrant up`
 4. Add this line to your /etc/hosts (or windows equivalent):
-    `10.0.0.10        dev-site.local`
-5. Alternately, use homebrew on your macbook air to install dnsmasq, and add the following line to your dnsmasq.conf file:
-    `address=/.vm/10.0.0.10`
-6. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
+    `10.0.0.10        dev-site.vm`
+5. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
 
-
-That's it, files in "public" are served here : [http://dev-site.local/](http://dev-site.local/), and if you have a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
+That's it, files in "public" are served at the URL specified in the Vagrantfile [http://dev-site.vm/](http://dev-site.vm) and if you have a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
 
 To connect to the console of you instance:
     `vagrant ssh` 
 
+As an alternative to Step 4, you can configure your OSX box to use dnsmasq and never have to fiddle with the file `/etc/hosts` ever again! In this example the TLD `.vm` is used. You could change this to another TLD if you preferred, such as .local, or .dev.
+
+1. Download and install [homebrew](http://brew.sh) if you haven't already. 
+2. `brew install dnsmasq`
+
+Create and configure a dnsmasq configuration file (ensure the IP address and TLD match the settings in your Vagrantfile):
+
+3. `mkdir -pv $(brew --prefix)/etc/`
+4. `echo 'address=/vm/10.0.0.10' > $(brew --prefix)/etc/dnsmasq.conf`
+
+Ensure dnsmasq is launched when the host computer boots:
+
+5. `sudo cp -v $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons`
+6. `sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist`
+
+Update the DNS resolution configuration files (ensure the IP address matches the adddress in Vagrantfile):
+
+7. `sudo mkdir -v /etc/resolver`
+8. `sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/vm'`
+
+At this point you may need to reboot your computer to see the changes to your DNS settings.
+ 
 # Why
 This project is based on the [Vagrant Project](http://drupal.org/project/vagrant) on Drupal.org, but includes a number of tweaks.
 
@@ -29,9 +48,9 @@ This project is based on the [Vagrant Project](http://drupal.org/project/vagrant
 
 --------
 
-You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug profile, e.g. [http://dev-site.vbox.local/?XDEBUG_PROFILE](http://dev-site.vbox.local/?XDEBUG_PROFILE)
+You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug profile, e.g. [http://dev-site.vbox.vm/?XDEBUG_PROFILE](http://dev-site.vbox.vm/?XDEBUG_PROFILE)
 
-You can then investigate at [http://dev-site.local/webgrind/](http://dev-site.local/webgrind/)
+You can then investigate at [http://dev-site.vm/webgrind/](http://dev-site.vm/webgrind/)
 
 
 ## Other projects of interest
