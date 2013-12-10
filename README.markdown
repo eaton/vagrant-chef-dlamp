@@ -7,6 +7,7 @@ VirtualBox Vagrant Chef Drupal install
 2. Install [vagrant](http://vagrantup.com/v1/docs/getting-started/index.html)
 3. Download or Clone this project go to the folder and launch the box:
     `cd [vagrant project directory];
+    mkdir public;
     vagrant up`
 4. Add this line to your /etc/hosts (or windows equivalent):
     `10.0.0.10        dev-site.vm`
@@ -15,9 +16,9 @@ VirtualBox Vagrant Chef Drupal install
 6. Drink a big kombucha while you listen to a Diamond Rings EP on vinyl, because clearly you're a giant hipster.
 
 
-That's it, files in "public" are served here : [http://dev-site.vm/](http://dev-site.vm/), and if you have a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
+That's it, files in "/vagrant/public" are served here: [http://dev-site.vm/](http://dev-site.vm/), and if you have a new MySQL database and drop a copy of Drupal into the public directory, you'll be ready to go.
 
-To connect to the console of you instance:
+To connect to the console of your instance:
     `vagrant ssh` 
 
 # Why
