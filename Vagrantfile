@@ -1,4 +1,9 @@
-Vagrant::Config.run do |config|
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. For a detailed explanation
   # and listing of configuration options, please view the documentation
   # online.
@@ -6,19 +11,16 @@ Vagrant::Config.run do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "precise32"
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-  # config.vm.boot_mode = :gui
 
-  # Network setting for Vagrant >= 0.90
-  config.vm.network :hostonly, "10.0.0.10"
-  config.vm.forward_port(80, 80)
-  config.vm.forward_port(3306, 3306)
+  config.vm.network "private_network", ip: "10.0.0.10"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 3306, host: 3030
 
   # Try to use NFS only on platforms other than Windows
   nfs = !Kernel.is_windows?
-  config.vm.synced_folder(".", "/vagrant", :nfs => nfs)
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   config.vm.provider :virtualbox do |vb|
-    # Memory setting for Vagrant >= 0.90
     vb.customize ["modifyvm", :id, "--memory", "1024"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
@@ -27,12 +29,12 @@ Vagrant::Config.run do |config|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
 
-    chef.add_recipe("vim")
+    chef.add_recipe "vim" 
 
     chef.roles_path = "roles"
 
     # This role represents our default Drupal development stack.
-    chef.add_role("drupal_lamp_dev")
+    chef.add_role "drupal_lamp_dev" 
 
     chef.json.merge!({
         :www_root => '/vagrant/public',
