@@ -1,7 +1,7 @@
 # Automatically prepare vhosts for drupal sites.
 # TODO Make this configurable per host.
-require_recipe "hosts"
-require_recipe "apache2"
+include_recipe "hosts"
+include_recipe "apache2"
 
 if node[:hosts].has_key(:localhost_aliases)
   node[:hosts][:localhost_aliases].each do |site|
