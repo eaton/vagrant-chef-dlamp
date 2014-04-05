@@ -1,4 +1,4 @@
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. For a detailed explanation
   # and listing of configuration options, please view the documentation
   # online.
@@ -8,35 +8,32 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   # config.vm.boot_mode = :gui
 
-  # Memory setting for Vagrant < 0.90
-  # config.vm.customize do |vm|
-  #   vm.memory_size = 1024
-  # end
+  Vagrant.require_version ">= 1.5.2"
 
-  # Memory setting for Vagrant >= 0.90
-  config.vm.provider 'virtualbox' do |v|
-    v.customize([
+  # Memory setting
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize([
       'modifyvm', :id,
       '--memory', '1024',
       '--natdnshostresolver1', 'on',
     ])
   end
 
-  # Network setting for Vagrant < 0.90
-  # config.vm.network("10.0.0.10")
-
-  # Network setting for Vagrant >= 0.90
-  config.vm.network :hostonly, "10.0.0.10"
-  config.vm.forward_port(80, 80, :auto => true)
-  config.vm.forward_port(3306, 3306, :auto => true)
+  # Network setting for Vagrant
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.network :forwarded_port, host: 80, guest: 80, auto_correct: true
+  config.vm.network :forwarded_port, host: 3306, guest: 3306, auto_correct: true
 
   # Try to use NFS only on platforms other than Windows
   nfs = !Kernel.is_windows?
-  config.vm.share_folder("vagrant-root", "/vagrant", ".", :nfs => nfs)
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
+
+    # Make sure to update apt-cache
+    chef.add_recipe "apt"
 
     chef.add_recipe("vim")
 
