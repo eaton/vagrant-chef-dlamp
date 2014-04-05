@@ -32,10 +32,7 @@ Vagrant.configure("2") do |config|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
 
-    # Make sure to update apt-cache
-    chef.add_recipe "apt"
-
-    chef.add_recipe("vim")
+    chef.add_recipe "vim"
 
     chef.roles_path = "roles"
 
