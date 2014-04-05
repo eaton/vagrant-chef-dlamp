@@ -27,8 +27,8 @@ Vagrant::Config.run do |config|
 
   # Network setting for Vagrant >= 0.90
   config.vm.network :hostonly, "10.0.0.10"
-  config.vm.forward_port(80, 80)
-  config.vm.forward_port(3306, 3306)
+  config.vm.forward_port(80, 80, :auto => true)
+  config.vm.forward_port(3306, 3306, :auto => true)
 
   # Try to use NFS only on platforms other than Windows
   nfs = !Kernel.is_windows?
