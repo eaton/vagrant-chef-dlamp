@@ -1,6 +1,6 @@
 # Install Drupal dev tools.
-require_recipe "apt"
-require_recipe "build-essential"
+include_recipe "apt"
+include_recipe "build-essential"
 
 # Install Git, since Drupal devs probably need that.
 package 'git-core'

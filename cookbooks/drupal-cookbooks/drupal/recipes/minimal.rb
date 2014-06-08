@@ -1,6 +1,6 @@
 # Install somewhat minimal tools to run Drupal, not including a specific HTTP server or PHP.
 # build-essential needed for PECL.
-require_recipe "build-essential"
+include_recipe "build-essential"
 
 pkgs = value_for_platform(
   [ "centos", "redhat", "fedora" ] => {
