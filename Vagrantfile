@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
     vb.customize([
       'modifyvm', :id,
       '--memory', '1024',
-      '--natdnshostresolver1', 'on',
     ])
   end
 
@@ -24,8 +23,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, host: 80, guest: 80, auto_correct: true
   config.vm.network :forwarded_port, host: 3306, guest: 3306, auto_correct: true
 
-  # Try to use NFS only on platforms other than Windows
-  nfs = !Kernel.is_windows?
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   config.vm.provision :chef_solo do |chef|
@@ -55,10 +52,4 @@ Vagrant.configure("2") do |config|
         }
       })
   end
-end
-
-# Returns true if we are running on a MS windows platform, false otherwise.
-def Kernel.is_windows?
-  processor, platform, *rest = RUBY_PLATFORM.split("-")
-  platform == 'mswin32' || platform == 'mswin64' || platform == 'mingw32' || platform == 'mingw32'
 end
