@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Network setting for Vagrant
-  config.vm.network "private_network", type: "dhcp"
+  config.vm.network "private_network", ip: "10.0.0.10"
   config.vm.network :forwarded_port, host: 80, guest: 80, auto_correct: true
   config.vm.network :forwarded_port, host: 3306, guest: 3306, auto_correct: true
 
